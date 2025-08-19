@@ -587,14 +587,20 @@ export default function Portfolio() {
             <div className="hidden sm:flex items-center gap-2">
               <MagneticButton
                 as={({ children, ...p }) => (
-                  <UIButton as="a" {...p} href={LINKS.resume} download>
+                  <UIButton
+                    as="a"
+                    {...p}
+                    href={LINKS.resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {children}
                   </UIButton>
                 )}
                 className="text-black rounded-[12px] border-2 border-black shadow-[4px_4px_0_0_#000]"
                 style={{ background: "var(--primary)" }}
               >
-                Download Resume
+                View Resume
               </MagneticButton>
             </div>
           </div>
@@ -684,12 +690,12 @@ export default function Portfolio() {
                   <span className="outline-text">Create</span>
                 </h1>
                 <p className="mt-4 max-w-2xl text-base font-semibold sm:text-lg/7 text-black/90">
-                  I’m a Computer Science student at UT Dallas with a builder’s
-                  mindset. I love shipping polished UIs with React/Next.js and
-                  wiring them to robust APIs in Flask/Node. I care about
+                  I’m a former Freelance Digital Artist who is currently
+                  majoring in Computer Science at UT Dallas. I am driven by
                   accessibility, developer experience, and measurable impact. I
-                  enjoy turning ideas into projects — from building AI-powered
-                  platforms to designing intuitive UIs and illustrations.
+                  enjoy transforming ideas into tangible projects — from
+                  crafting AI-powered platforms to designing intuitive user
+                  interfaces and illustrations.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <motion.div whileHover={{ y: 1 }} whileTap={{ scale: 0.98 }}>
