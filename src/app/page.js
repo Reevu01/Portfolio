@@ -320,7 +320,7 @@ const EXPERIENCE = [
   {
     role: "Incoming Co-op Software Engineering Intern",
     org: "Adtran",
-    date: "Jan 2026 – Aug 2026",
+    date: "Jan 2026 – May 2026",
     bullets: [
       "Selected as an upcoming Co-op student to work at Adtran.",
       "Will work on full-stack development, cloud, and scalable solutions in a collaborative engineering environment.",
