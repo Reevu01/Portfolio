@@ -287,46 +287,48 @@ const PROJECTS = [
 ];
 
 const SKILLS = [
-  // Languages
-  "Java",
-  "Python",
-  "C++",
-  "C",
-  "C#",
-  "Assembly (MASM)",
-  "JavaScript",
-  "TypeScript",
-  "HTML",
-  "CSS",
-  "Dart",
-  "SQL",
-  // Frameworks & Libraries
-  "React",
-  "Next.js",
-  "Node.js",
-  "Flask",
-  "Flutter",
-  "Firebase",
-  "Firestore",
-  "MongoDB",
-  "SQLAlchemy",
-  "Framer Motion",
-  "shadcn/ui",
-  // Tools & Platforms
-  "VS Code",
-  "Eclipse",
-  "Xcode",
-  "Unity",
-  "PyTorch",
-  "Docker",
-  "Git/GitHub",
-  "Google Colab",
-  "Linux",
-  "Postman",
+  // Frontend
+  { name: "React", category: "frontend" },
+  { name: "Next.js", category: "frontend" },
+  { name: "JavaScript", category: "frontend" },
+  { name: "TypeScript", category: "frontend" },
+  { name: "HTML", category: "frontend" },
+  { name: "CSS", category: "frontend" },
+  { name: "Framer Motion", category: "frontend" },
+  { name: "shadcn/ui", category: "frontend" },
+  { name: "TailwindCSS", category: "frontend" },
+  // Backend
+  { name: "Java", category: "backend" },
+  { name: "Python", category: "backend" },
+  { name: "C++", category: "backend" },
+  { name: "C", category: "backend" },
+  { name: "C#", category: "backend" },
+  { name: "Assembly (MASM)", category: "backend" },
+  { name: "Dart", category: "backend" },
+  { name: "SQL", category: "backend" },
+  { name: "Node.js", category: "backend" },
+  { name: "Flask", category: "backend" },
+  { name: "Firebase", category: "backend" },
+  { name: "Firestore", category: "backend" },
+  { name: "MongoDB", category: "backend" },
+  { name: "SQLAlchemy", category: "backend" },
   // AI/LLM
-  "LangChain",
-  "LlamaIndex",
-  "Unstructured.io",
+  { name: "LangChain", category: "ai" },
+  { name: "LlamaIndex", category: "ai" },
+  { name: "Unstructured.io", category: "ai" },
+  { name: "PyTorch", category: "ai" },
+  { name: "OpenAI API", category: "ai" },
+  // Misc/Tools
+  { name: "Flutter", category: "misc" },
+  { name: "VS Code", category: "misc" },
+  { name: "Eclipse", category: "misc" },
+  { name: "Xcode", category: "misc" },
+  { name: "Unity", category: "misc" },
+  { name: "Docker", category: "misc" },
+  { name: "Git/GitHub", category: "misc" },
+  { name: "Google Colab", category: "misc" },
+  { name: "Linux", category: "misc" },
+  { name: "Postman", category: "misc" },
 ];
 
 const EXPERIENCE = [
@@ -454,6 +456,7 @@ function Window({ title, children }) {
 export default function Portfolio() {
   const shouldReduce = useReducedMotion();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [selectedSkillCategory, setSelectedSkillCategory] = useState("all");
 
   // Which section is currently in view?
 
@@ -475,6 +478,20 @@ export default function Portfolio() {
       localStorage.setItem("accentKey", key);
     } catch {}
   }
+
+  // Filter skills based on selected category
+  const filteredSkills =
+    selectedSkillCategory === "all"
+      ? SKILLS
+      : SKILLS.filter((skill) => skill.category === selectedSkillCategory);
+
+  const skillCategories = [
+    { id: "all", label: "All" },
+    { id: "frontend", label: "Frontend" },
+    { id: "backend", label: "Backend" },
+    { id: "ai", label: "AI" },
+    { id: "misc", label: "Misc" },
+  ];
 
   // Lightweight runtime "tests" to prevent bad labels from breaking JSX
   useEffect(() => {
@@ -975,23 +992,52 @@ export default function Portfolio() {
             style={{ background: "var(--primary)" }}
           />
         </div>
+
+        {/* Category Filter Buttons */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          {skillCategories.map((category) => (
+            <motion.button
+              key={category.id}
+              onClick={() => setSelectedSkillCategory(category.id)}
+              whileHover={{ y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              className={`px-4 py-2 rounded-xl border-2 border-black font-semibold text-sm transition-all duration-200 ${
+                category.id === "all" ? "hidden md:inline-flex" : ""
+              } ${
+                selectedSkillCategory === category.id
+                  ? "bg-white text-black shadow-[4px_4px_0_0_#000]"
+                  : "bg-white/10 text-white/80 hover:bg-white/20 hover:text-white"
+              }`}
+            >
+              {category.label}
+            </motion.button>
+          ))}
+        </div>
+
         <motion.ul
-          variants={container}
-          initial="hidden"
-          whileInView="show"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4"
         >
-          {SKILLS.map((s) => (
-            <motion.li
-              key={s}
-              variants={item}
-              whileHover={{ y: -2 }}
-              className="rounded-2xl px-4 py-3 border-2 border-black bg-white text-black shadow-[4px_4px_0_0_#000] text-sm"
-            >
-              {sanitizeText(s)}
-            </motion.li>
-          ))}
+          <AnimatePresence mode="wait">
+            {filteredSkills.map((skill, index) => (
+              <motion.li
+                key={skill.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{
+                  duration: 0.3,
+                  delay: index * 0.05, // Staggered animation
+                }}
+                whileHover={{ y: -2 }}
+                className="rounded-2xl px-4 py-3 border-2 border-black bg-white text-black shadow-[4px_4px_0_0_#000] text-sm"
+              >
+                {sanitizeText(skill.name)}
+              </motion.li>
+            ))}
+          </AnimatePresence>
         </motion.ul>
       </section>
 
@@ -1035,6 +1081,32 @@ export default function Portfolio() {
                       </a>
                     </MagneticButton>
                   </motion.div>
+
+                  {/* Mobile-only View Resume Button */}
+                  <motion.div
+                    whileHover={{ y: 1 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="md:hidden"
+                  >
+                    <MagneticButton
+                      as={({ children, ...p }) => (
+                        <UIButton
+                          as="a"
+                          {...p}
+                          href={LINKS.resume}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {children}
+                        </UIButton>
+                      )}
+                      className="text-black rounded-[12px] border-2 border-black shadow-[4px_4px_0_0_#000]"
+                      style={{ background: "var(--primary)" }}
+                    >
+                      View Resume
+                    </MagneticButton>
+                  </motion.div>
+
                   <motion.div whileHover={{ y: 1 }} whileTap={{ scale: 0.98 }}>
                     <MagneticButton
                       className="rounded-[12px] border-2 border-black shadow-[4px_4px_0_0_#000]"
