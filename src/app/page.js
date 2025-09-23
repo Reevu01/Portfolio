@@ -174,6 +174,7 @@ const LINKS = {
   game: "/game.png",
   expert: "/Expert.jpg", // watch filename case!
   weather: "/weather.png",
+  medsplit: "/medsplit.png",
 };
 
 // Sanitize any user/dynamic text so JSX never sees raw angle brackets
@@ -189,6 +190,19 @@ const NAV = [
 ];
 
 const PROJECTS = [
+  {
+    title: "MedSplit",
+    date: "Sep 2025",
+    blurb:
+      "Healthcare marketplace that pools med demand, enables doctor-verified donations, and routes micro-grants to lower medication costs and waste.",
+    impact:
+      "Optimistic UI/event bus, domain-modeled REST APIs; secure uploads & server-validated checkout.",
+    stack: ["Next.js", "Flask", "TypeScript", "TailwindCSS", "GEMINI API"],
+    url: "https://devpost.com/software/baubau?ref_content=user-portfolio&ref_feature=in_progress", // TODO: add Devpost link
+    repo: "https://github.com/Aproteem/MedSplit",
+    image: LINKS.medsplit,
+    featured: true,
+  },
   {
     title: "FinSight AI",
     date: "Apr 2025",
@@ -313,7 +327,6 @@ const SKILLS = [
   "LangChain",
   "LlamaIndex",
   "Unstructured.io",
-  "OpenAI API",
 ];
 
 const EXPERIENCE = [
@@ -740,7 +753,7 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-        <div className="border-y-2 border-black checker">
+        <div className="border-y-2 border-black checker overflow-hidden">
           <div className="marquee py-2 text-xs sm:text-sm font-semibold uppercase tracking-wider">
             <span>
               React · Next.js · Flask · LangChain · LlamaIndex · MongoDB ·
