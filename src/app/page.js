@@ -554,7 +554,7 @@ export default function Portfolio() {
             <nav className="hidden md:flex items-center gap-2">
               {NAV.map((n) => (
                 <motion.a
-                  key={n.id}
+                  key={`desktop-nav-${n.id}`}
                   href={`#${n.id}`}
                   whileHover={{ y: 1 }}
                   className="px-4 py-2 font-bold text-sm rounded-[12px] border-2 border-black bg-white/5 transition hover:shadow-[0_0_0_4px_var(--primary)] focus-visible:shadow-[0_0_0_4px_var(--primary)] focus-visible:outline-none"
@@ -581,7 +581,7 @@ export default function Portfolio() {
               <span className="text-white/70">Accent:</span>
               {Object.entries(ACCENTS).map(([key, val]) => (
                 <button
-                  key={key}
+                  key={`desktop-accent-${key}`}
                   onClick={() => chooseAccent(key)}
                   className={
                     "h-5 w-5 rounded-full border-2 border-black transition " +
@@ -635,7 +635,7 @@ export default function Portfolio() {
             >
               <ul className="px-4 py-4 space-y-2">
                 {NAV.map((n) => (
-                  <li key={n.id}>
+                  <li key={`mobile-nav-${n.id}`}>
                     <a
                       href={`#${n.id}`}
                       onClick={() => setMenuOpen(false)}
@@ -663,7 +663,7 @@ export default function Portfolio() {
             <span className="text-white/70 text-xs">Accent:</span>
             {Object.entries(ACCENTS).map(([key, val]) => (
               <button
-                key={key}
+                key={`mobile-accent-${key}`}
                 onClick={() => chooseAccent(key)} // ✅ use chooseAccent
                 className={
                   "h-5 w-5 rounded-full border-2 border-black transition " +
@@ -943,8 +943,14 @@ export default function Portfolio() {
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
               <div>
-                <div className="text-lg font-extrabold">
-                  {sanitizeText(ed.school)}
+                <div className="text-lg font-extrabold hover:text-orange-400 transition-colors duration-100 ease-out">
+                  <a
+                    href="https://www.utdallas.edu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {sanitizeText(ed.school)}
+                  </a>
                 </div>
                 <div className="text-white/80">{sanitizeText(ed.degree)}</div>
               </div>
@@ -1020,21 +1026,47 @@ export default function Portfolio() {
                   reply within a day.
                 </p>
                 <div className="mt-6 flex flex-wrap gap-3 items-center">
-                  <motion.div whileHover={{ y: 3 }} whileTap={{ scale: 0.98 }}>
-                    <MagneticButton
-                      className="rounded-[12px] border-2 border-black shadow-[4px_4px_0_0_#000]"
-                      style={{ background: "var(--primary)" }}
+                  <div className="flex gap-3 w-full sm:w-auto">
+                    <motion.div
+                      whileHover={{ y: 3 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <a
-                        href="https://mail.google.com/mail/?view=cm&fs=1&to=reevu1214@gmail.com"
-                        target="_blank"
-                        className="flex items-center gap-2 text-white font-bold"
+                      <MagneticButton
+                        className="rounded-[12px] border-2 border-black shadow-[4px_4px_0_0_#000] px-4 py-2"
+                        style={{ background: "var(--primary)" }}
                       >
-                        <Mail className="h-4 w-4" />
-                        Email Me
-                      </a>
-                    </MagneticButton>
-                  </motion.div>
+                        <a
+                          href="https://mail.google.com/mail/?view=cm&fs=1&to=reevu1214@gmail.com"
+                          target="_blank"
+                          className="flex items-center gap-2 text-white font-bold justify-center"
+                        >
+                          <Mail className="h-4 w-4" />
+                          Email Me
+                        </a>
+                      </MagneticButton>
+                    </motion.div>
+                    {/* Mobile-only Resume Download Button */}
+                    <motion.div
+                      whileHover={{ y: 3 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="sm:hidden"
+                    >
+                      <MagneticButton
+                        className="rounded-[12px] border-2 border-black shadow-[4px_4px_0_0_#000] px-4 py-2"
+                        style={{ background: "var(--primary)" }}
+                      >
+                        <a
+                          href={LINKS.resume}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-white font-bold justify-center"
+                        >
+                          <ArrowUpRight className="h-4 w-4" />
+                          View Resume
+                        </a>
+                      </MagneticButton>
+                    </motion.div>
+                  </div>
                   <motion.div whileHover={{ y: 1 }} whileTap={{ scale: 0.98 }}>
                     <MagneticButton
                       className="rounded-[12px] border-2 border-black shadow-[4px_4px_0_0_#000]"
