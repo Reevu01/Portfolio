@@ -1018,13 +1018,27 @@ export default function Portfolio() {
             </div>
             <div className="relative grid grid-cols-1 md:grid-cols-3 gap-0">
               <div className="md:col-span-2 p-6 sm:p-8 lg:p-16 bg-white/10">
-                <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
-                  Let’s build something outrageous
-                </h2>
-                <p className="mt-3 text-white/90 max-w-prose">
-                  Have a role or project in mind? I’m happy to chat. I usually
-                  reply within a day.
-                </p>
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover opacity-3 pointer-events-none z-0"
+                  src="/video.mp4"
+                />
+                <div className="relative overflow-hidden rounded-xl">
+                  {/* Background video overlay (only for heading/desc) */}
+
+                  <div className="relative z-10">
+                    <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+                      Let’s build something outrageous
+                    </h2>
+                    <p className="mt-3 text-white/90 max-w-prose">
+                      Have a role or project in mind? I’m happy to chat. I
+                      usually reply within a day.
+                    </p>
+                  </div>
+                </div>
                 <div className="mt-6 flex flex-wrap gap-3 items-center">
                   <div className="flex gap-3 w-full sm:w-auto">
                     <motion.div
