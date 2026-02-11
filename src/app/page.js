@@ -335,8 +335,6 @@ const EXPERIENCE = [
     org: "Adtran",
     date: "Jan 2026 – April 2026",
     bullets: [
-      "Selected as an upcoming Co-op student to work at Adtran.",
-      "Will work on full-stack development, cloud, and scalable solutions in a collaborative engineering environment.",
       "Developing and debugging C++ software for an embedded Linux–based Ethernet network demarcation device drivers.",
       "Implemented and validated APL layer port-speed handling and traffic-control rules for carrier-grade Layer-2 networking on Linux.",
     ],
