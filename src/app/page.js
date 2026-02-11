@@ -49,7 +49,7 @@ const ACCENTS = {
 // Make UIButton polymorphic
 const UIButton = forwardRef(function UIButton(
   { as: Tag = "button", className = "", children, ...props },
-  ref
+  ref,
 ) {
   return (
     <Tag
@@ -133,7 +133,7 @@ const Card = ({ className = "", children }) => (
   <div
     className={cx(
       "rounded-2xl border border-white/10 bg-white/[0.04]",
-      className
+      className,
     )}
   >
     {children}
@@ -331,19 +331,21 @@ const SKILLS = [
 
 const EXPERIENCE = [
   {
-    role: "Incoming Co-op Software Engineering Intern",
+    role: "Software Engineering Co-op (Embedded Linux)",
     org: "Adtran",
     date: "Jan 2026 – April 2026",
     bullets: [
       "Selected as an upcoming Co-op student to work at Adtran.",
       "Will work on full-stack development, cloud, and scalable solutions in a collaborative engineering environment.",
+      "Developing and debugging C++ software for an embedded Linux–based Ethernet network demarcation device drivers.",
+      "Implemented and validated APL layer port-speed handling and traffic-control rules for carrier-grade Layer-2 networking on Linux, testing via simulators and physical devices using custom kernel builds and device-driver development/debugging.",
     ],
     url: "https://www.adtran.com/en",
   },
   {
     role: "Student Support Analyst",
     org: "UT Dallas – Office of Information Technology",
-    date: "Jan 2025 – Present",
+    date: "Jan 2025 – Dec 2025",
     bullets: [
       "Provide quality technical support across phone, email, chat, remote tools, and in‑person at the Technology Bar.",
       "Troubleshoot approved technologies and document tickets thoroughly for accurate follow‑up.",
@@ -481,29 +483,29 @@ export default function Portfolio() {
     const hasAngles = (s) => /[<>]/.test(String(s ?? ""));
     console.assert(
       NAV.every((n) => typeof n.label === "string"),
-      "[Test] NAV labels must be strings"
+      "[Test] NAV labels must be strings",
     );
     console.assert(
       NAV.every((n) => !hasAngles(n.label)),
-      "[Test] NAV labels must not contain < or >"
+      "[Test] NAV labels must not contain < or >",
     );
     // Extra tests for project fields and bullets
     PROJECTS.forEach((p, i) => {
       console.assert(
         !hasAngles(p.title),
-        `[Test] PROJECTS[${i}].title has < or >`
+        `[Test] PROJECTS[${i}].title has < or >`,
       );
       console.assert(
         !hasAngles(p.date),
-        `[Test] PROJECTS[${i}].date has < or >`
+        `[Test] PROJECTS[${i}].date has < or >`,
       );
       console.assert(
         !hasAngles(p.blurb),
-        `[Test] PROJECTS[${i}].blurb has < or >`
+        `[Test] PROJECTS[${i}].blurb has < or >`,
       );
       console.assert(
         !hasAngles(p.impact),
-        `[Test] PROJECTS[${i}].impact has < or >`
+        `[Test] PROJECTS[${i}].impact has < or >`,
       );
     });
   }, []);
