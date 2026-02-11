@@ -338,7 +338,7 @@ const EXPERIENCE = [
       "Selected as an upcoming Co-op student to work at Adtran.",
       "Will work on full-stack development, cloud, and scalable solutions in a collaborative engineering environment.",
       "Developing and debugging C++ software for an embedded Linux–based Ethernet network demarcation device drivers.",
-      "Implemented and validated APL layer port-speed handling and traffic-control rules for carrier-grade Layer-2 networking on Linux, testing via simulators and physical devices using custom kernel builds and device-driver development/debugging.",
+      "Implemented and validated APL layer port-speed handling and traffic-control rules for carrier-grade Layer-2 networking on Linux.",
     ],
     url: "https://www.adtran.com/en",
   },
