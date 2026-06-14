@@ -331,9 +331,18 @@ const SKILLS = [
 
 const EXPERIENCE = [
   {
+    role: "Ai Engineer Intern (Software Development) ",
+    org: "CBRE",
+    date: "Jun 2026 – Aug 2026",
+    bullets: [
+      "Implementing HR agent integration for in house AI system enabling efficient knowledgebase search and agentic ticket management workflow via A2A/WSO2 connector architecture on full stack (Angular|Golang|AWS|Azure) environment",
+    ],
+    url: "https://www.cbre.com",
+  },
+  {
     role: "Software Engineering Co-op (Embedded Linux)",
     org: "Adtran",
-    date: "Jan 2026 – April 2026",
+    date: "Jan 2026 – Apr 2026",
     bullets: [
       "Developing and debugging C++ software for an embedded Linux–based Ethernet network demarcation device drivers.",
       "Implemented and validated APL layer port-speed handling and traffic-control rules for carrier-grade Layer-2 networking on Linux.",
